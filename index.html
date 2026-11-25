@@ -1144,6 +1144,30 @@ window.SDN = { wa:'6281384198786', alamat:'Cidahu Blok Dangdeur, Pagaden Barat, 
   if (a) a.innerHTML = WAI + ' Pesan via WhatsApp';
 })();
 </script>
+<script>
+/* Statistik pengunjung (GoatCounter: sdnfood.goatcounter.com). Tidak dihitung saat dibuka dari pratinjau/lokal. */
+(function(){
+  var h = location.hostname;
+  if (!/^https?:$/.test(location.protocol) || /claude|anthropic|localhost|127\.0\.0\.1/.test(h)) return;
+  var s = document.createElement('script');
+  s.async = true; s.src = '//gc.zgo.at/count.js';
+  s.setAttribute('data-goatcounter','https://sdnfood.goatcounter.com/count');
+  document.head.appendChild(s);
+  function ev(name,title){
+    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path:name,title:title,event:true});
+  }
+  document.addEventListener('click',function(e){
+    var a = e.target.closest && e.target.closest('#prWa, .ft-wa');
+    if (!a) return;
+    if (a.id==='prWa'){ var n=(document.getElementById('prName')||{}).textContent||'produk'; ev('wa-produk-'+n.toLowerCase().replace(/\s+/g,'-'),'Klik WA: '+n); }
+    else ev('wa-footer','Klik WA: footer');
+  },true);
+  document.addEventListener('click',function(e){
+    var b = e.target.closest && e.target.closest('.pj-tab'); if (b) ev('cabang-'+b.textContent.trim().split(' ')[1],'Buka '+b.textContent.trim().split(' ★')[0]);
+    var r = e.target.closest && e.target.closest('.pj-row'); if (r && !r.classList.contains('open')){ var n=r.querySelector('.pj-nm'); if(n) ev('pejuang-'+n.textContent.toLowerCase().replace(/\s+/g,'-'),'Lihat grafik: '+n.textContent); }
+  },true);
+})();
+</script>
 <!-- FOOTER:END -->
 
 <script>
